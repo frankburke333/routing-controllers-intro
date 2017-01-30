@@ -25,11 +25,18 @@ class PagesController < ApplicationController
   def kittens
   end
 
+  def secrets
+    if params[:magic_word] != "frank4237"
+      flash[:alert] = "SECRET PASSWORD DOES NOT MATCH"
+      redirect_to "/welcome"
+    end
+  end
 
   def set_kitten_url
     requested_size = params[:size]
     @kitten_url = "http://lorempixel.com/#{requested_size}/#{requested_size}/cats"
-    end
+  end
+
 
 
 end
